@@ -1,0 +1,35 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 80px;
+  text-align: center;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 -5px 100px 0 rgba(black, 0.1);
+  transform: translate(-50%, -50%);
+
+  p {
+    height: 35px;
+    padding-top: 10px;
+  }
+
+  .buttons {
+    display: flex;
+    height: 45px;
+
+    .button {
+      flex: 1;
+      height: 100%;
+      padding-bottom: 5px;
+    }
+  }
+}

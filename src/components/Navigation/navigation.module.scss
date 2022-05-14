@@ -1,0 +1,49 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.wrap {
+  display: flex;
+  height: 80px;
+  background-color: colors.$WHITE;
+  border-radius: 40px;
+  box-shadow: 0 -5px 100px 0 rgba(gray, 0.1);
+
+  .icon {
+    flex: 1;
+    padding: 25px 0;
+    margin: 0 auto;
+    text-align: center;
+    fill: gray;
+  }
+}
+
+// <section className={styles.weather}>
+// <h1>{data.city.name}</h1>
+// <div className={styles.forecast}>
+//   <h2>Next forecast</h2>
+//   <ul>
+//     {data.list.map((item) => {
+//       return (
+//         <li key={item.dt_txt}>
+//           <dl>
+//             <div>
+//               <dt>날짜</dt>
+//               <dd>{item.dt_txt}</dd>
+//             </div>
+//             <div>
+//               <dt>온도</dt>
+//               <dd>{item.main.temp}</dd>
+//             </div>
+//             <div>
+//               <dt>날씨</dt>
+//               <dd>{item.weather[0].main}</dd>
+//             </div>
+//           </dl>
+//         </li>
+//       )
+//     })}
+//   </ul>
+// </div>
+// </section>
