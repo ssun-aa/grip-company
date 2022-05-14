@@ -1,4 +1,5 @@
 import styles from './favorites.module.scss'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useEffect, useMount, useState } from 'hooks'
 import { atom, useRecoilState } from 'recoil'
 import { favListState } from 'recoil/atom'
@@ -29,6 +30,20 @@ const Favorites = () => {
     setClickedMovieId(e.currentTarget.id)
   }
 
+  const handleOnDragEnd = (result: any) => {
+    if (!result.destination) return
+
+    const currentList = [...favMovieList]
+    const beforIndex = result.source.index
+    const afterIndex = result.destination.index
+
+    const removeItem = currentList.splice(beforIndex, 1)
+
+    currentList.splice(afterIndex, 0, removeItem[0])
+
+    setFavMovieList(currentList)
+  }
+
   useEffect(() => {
     setClickedMovie(favMovieList.find((item) => item.imdbID === clickedMovieId))
   }, [clickedMovieId])
@@ -44,13 +59,32 @@ const Favorites = () => {
       </header>
       <main>
         {favMovieList.length ? (
-          <ul>
-            {favMovieList.map((item: IListItem) => (
-              <li onClick={handleClick} role='presentation' key={item.imdbID} id={item.imdbID}>
-                <Item item={item} fav />
-              </li>
-            ))}
-          </ul>
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId='favorites'>
+              {(provided) => (
+                <ul className='favorites' {...provided.droppableProps} ref={provided.innerRef}>
+                  {favMovieList.map((item: IListItem, index: number) => (
+                    <Draggable key={item.imdbID} draggableId={item.imdbID} index={index}>
+                      {(provide) => (
+                        <li
+                          ref={provide.innerRef}
+                          {...provide.draggableProps}
+                          {...provide.dragHandleProps}
+                          onClick={handleClick}
+                          role='presentation'
+                          key={item.imdbID}
+                          id={item.imdbID}
+                        >
+                          <Item item={item} fav />
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
         ) : (
           <p>즐겨찾기가 없습니다.</p>
         )}

@@ -60,8 +60,6 @@ const Search = () => {
         setTotalResults(data.totalResults)
       }
       if (data.Response === 'True') {
-        console.log('diving')
-
         setMovieList((prev) => _.uniqBy([...prev, ...data.Search], 'imdbID'))
       }
     } catch (e) {
