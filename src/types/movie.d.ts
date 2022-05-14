@@ -16,6 +16,4 @@ export interface ModalProps {
   clickedMovie: IMovieList | undefined
   isShown: boolean
   setShown: dispatch<SetStateAction<boolean>>
-  handleClickFav: (e: { currentTarget: { id: string } }) => void
-  handleCloseModal: () => void
 }

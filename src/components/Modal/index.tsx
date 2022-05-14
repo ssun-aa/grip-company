@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { favListState } from 'recoil/atom'
 
-const Modal = ({ clickedMovie, isShown, setShown, handleClickFav, handleCloseModal }: ModalProps) => {
+const Modal = ({ clickedMovie, isShown, setShown }: ModalProps) => {
   const outSection = useRef<HTMLDivElement>(null)
   const [favMovieList, setFavMovieList] = useRecoilState<IListItem[]>(favListState)
 
@@ -17,6 +17,18 @@ const Modal = ({ clickedMovie, isShown, setShown, handleClickFav, handleCloseMod
       }
     }
   }
+
+  const handleClickFav = () => {
+    if (clickedMovie) {
+      if (!favMovieList.some((fav) => fav.imdbID === clickedMovie.imdbID)) {
+        setFavMovieList([...favMovieList, clickedMovie])
+      } else setFavMovieList(favMovieList.filter((item) => item.imdbID !== clickedMovie.imdbID))
+
+      setShown(false)
+    }
+  }
+
+  const handleCloseModal = () => setShown((prev: boolean) => !prev)
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)

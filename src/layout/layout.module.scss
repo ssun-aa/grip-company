@@ -9,9 +9,15 @@
   .wrap {
     position: relative;
     width: 360px;
-    height: 720px;
+    height: 100vh;
     background-color: colors.$GRAYE;
     border-radius: 40px;
     box-shadow: 0 -5px 100px 0 rgba(black, 0.1);
+
+    .nav {
+      position: absolute;
+      bottom: 0;
+      width: 360px;
+    }
   }
 }

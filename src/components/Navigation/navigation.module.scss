@@ -18,32 +18,3 @@
     fill: gray;
   }
 }
-
-// <section className={styles.weather}>
-// <h1>{data.city.name}</h1>
-// <div className={styles.forecast}>
-//   <h2>Next forecast</h2>
-//   <ul>
-//     {data.list.map((item) => {
-//       return (
-//         <li key={item.dt_txt}>
-//           <dl>
-//             <div>
-//               <dt>날짜</dt>
-//               <dd>{item.dt_txt}</dd>
-//             </div>
-//             <div>
-//               <dt>온도</dt>
-//               <dd>{item.main.temp}</dd>
-//             </div>
-//             <div>
-//               <dt>날씨</dt>
-//               <dd>{item.weather[0].main}</dd>
-//             </div>
-//           </dl>
-//         </li>
-//       )
-//     })}
-//   </ul>
-// </div>
-// </section>

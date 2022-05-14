@@ -4,7 +4,7 @@ import { getMovieAPI } from 'services/movie'
 import { SearchIcon } from 'assets/svgs'
 import { favListState } from 'recoil/atom'
 import { IListItem } from 'types/movie.d'
-import _ from 'lodash'
+import { uniqBy } from 'lodash'
 import styles from './search.module.scss'
 import Item from 'components/Item'
 import Modal from 'components/Modal'
@@ -15,23 +15,11 @@ const Search = () => {
   const [isShown, setShown] = useState(false)
   const [clickedMovie, setClickedMovie] = useState<IListItem>()
   const [totalResults, setTotalResults] = useState(0)
-
   const [movieList, setMovieList] = useState<IListItem[]>([])
-  const [favMovieList, setFavMovieList] = useRecoilState<IListItem[]>(favListState)
+
+  const [favMovieList] = useRecoilState<IListItem[]>(favListState)
 
   const pageEnd = useRef<any>()
-
-  const handlecloseModal = () => setShown((prev) => !prev)
-
-  const handleClickFav = () => {
-    if (clickedMovie) {
-      if (!favMovieList.some((fav) => fav.imdbID === clickedMovie.imdbID)) {
-        setFavMovieList([...favMovieList, clickedMovie])
-      } else setFavMovieList(favMovieList.filter((item) => item.imdbID !== clickedMovie.imdbID))
-
-      setShown(false)
-    }
-  }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setKeyword(e.currentTarget.value)
@@ -60,9 +48,10 @@ const Search = () => {
         setTotalResults(data.totalResults)
       }
       if (data.Response === 'True') {
-        setMovieList((prev) => _.uniqBy([...prev, ...data.Search], 'imdbID'))
+        setMovieList((prev) => uniqBy([...prev, ...data.Search], 'imdbID'))
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e)
     }
   }
@@ -130,19 +119,15 @@ const Search = () => {
                 </li>
               )
             })}
-            <li ref={pageEnd}>{'Loading... '}</li>
+            <li ref={pageEnd} className={styles.loading}>
+              {'Loading... '}
+            </li>
           </ul>
         ) : (
           <p>검색 결과가 없습니다.</p>
         )}
       </main>
-      <Modal
-        clickedMovie={clickedMovie}
-        isShown={isShown}
-        setShown={setShown}
-        handleClickFav={handleClickFav}
-        handleCloseModal={handlecloseModal}
-      />
+      <Modal clickedMovie={clickedMovie} isShown={isShown} setShown={setShown} />
     </div>
   )
 }
