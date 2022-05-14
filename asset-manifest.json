@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/grip-company/static/css/main.1d65e363.css",
-    "main.js": "/grip-company/static/js/main.cf323d6a.js",
+    "main.js": "/grip-company/static/js/main.6085dffe.js",
     "static/js/787.68ea1acb.chunk.js": "/grip-company/static/js/787.68ea1acb.chunk.js",
     "index.html": "/grip-company/index.html",
     "static/media/search.svg": "/grip-company/static/media/search.65a7fd1428ac118d9cf16258119a0165.svg",
@@ -9,11 +9,11 @@
     "static/media/cancel.svg": "/grip-company/static/media/cancel.2a6dcf09223357a4829d5ac44c0eb85d.svg",
     "static/media/colorStar.svg": "/grip-company/static/media/colorStar.7ad748181de1cadf2e25434581d8af0a.svg",
     "main.1d65e363.css.map": "/grip-company/static/css/main.1d65e363.css.map",
-    "main.cf323d6a.js.map": "/grip-company/static/js/main.cf323d6a.js.map",
+    "main.6085dffe.js.map": "/grip-company/static/js/main.6085dffe.js.map",
     "787.68ea1acb.chunk.js.map": "/grip-company/static/js/787.68ea1acb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1d65e363.css",
-    "static/js/main.cf323d6a.js"
+    "static/js/main.6085dffe.js"
   ]
 }
