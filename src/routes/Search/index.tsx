@@ -82,7 +82,7 @@ const Search = () => {
             }
           }
         },
-        { threshold: 1 }
+        { threshold: 0.5 }
       )
 
       observer.observe(pageEnd.current)
