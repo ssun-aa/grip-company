@@ -13,7 +13,6 @@ const Search = () => {
   const [keyword, setKeyword] = useState<string>('')
   const [page, setPage] = useState(1)
   const [isShown, setShown] = useState(false)
-  const [clickedMovieId, setClickedMovieId] = useState('')
   const [clickedMovie, setClickedMovie] = useState<IListItem>()
   const [totalResults, setTotalResults] = useState(0)
 
@@ -61,7 +60,9 @@ const Search = () => {
         setTotalResults(data.totalResults)
       }
       if (data.Response === 'True') {
-        setMovieList((prev) => _.uniq([...prev, ...data.Search]))
+        console.log('diving')
+
+        setMovieList((prev) => _.uniqBy([...prev, ...data.Search], 'imdbID'))
       }
     } catch (e) {
       console.log(e)
