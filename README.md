@@ -1,6 +1,10 @@
 # grip-company
 
-ssun-aa.github.io/grip-company/
+
+## 배포 링크
+
+- https://ssun-aa.github.io/grip-company/
+
 
 ## 주요 기능
 ### * Search 검색 기능 (Infinite Scroll)
