@@ -1,5 +1,7 @@
 # grip-company
 
+ssun-aa.github.io/grip-company/
+
 ## 주요 기능
 ### * Search 검색 기능 (Infinite Scroll)
 <img src="https://user-images.githubusercontent.com/47405655/168441815-0835b906-b323-42c9-97d3-c16e6edc7194.gif"  width="500" height="450"/>
