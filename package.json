@@ -10,7 +10,7 @@
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
   },
-  "homepage": "https://ssun-aa.github.io/grip-company/",
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",
