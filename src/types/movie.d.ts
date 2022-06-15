@@ -4,6 +4,7 @@ export interface IListItem {
   imdbID: string
   Type: string
   Poster: string
+  Review: string
 }
 
 export interface IMovieAPIRes {

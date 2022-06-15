@@ -6,13 +6,14 @@ import { noImage } from 'assets/images'
 interface Props {
   item: IListItem
   fav: boolean
+  review?: string
 }
 
 function onErrorHandler(e: { currentTarget: { src: string } }) {
   e.currentTarget.src = noImage
 }
 
-const ListItem = ({ item, fav }: Props) => {
+const ListItem = ({ item, fav, review }: Props) => {
   return (
     <div className={styles.item}>
       <div className={styles.poster}>
@@ -21,7 +22,7 @@ const ListItem = ({ item, fav }: Props) => {
       <div className={styles.detail}>
         <h1>{item.Title}</h1>
         <p>{item.Type}</p>
-        <p>{item.imdbID}</p>
+        <p>{review || item.imdbID}</p>
         {fav ? (
           <ColorStarIcon className={styles.favIcon} viewBox='0,0,30,30' />
         ) : (

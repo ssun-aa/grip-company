@@ -39,7 +39,10 @@ const Search = () => {
 
   const handleClick = (e: { currentTarget: { id: string } }) => {
     setShown(true)
-    setClickedMovie(movieList?.find((item) => item.imdbID === e.currentTarget.id))
+    setClickedMovie(
+      favMovieList.find((item) => item.imdbID === e.currentTarget.id) ||
+        movieList?.find((item) => item.imdbID === e.currentTarget.id)
+    )
   }
 
   const MovieApi = async () => {
@@ -115,7 +118,7 @@ const Search = () => {
             {movieList.map((item: IListItem) => {
               return (
                 <li onClick={handleClick} role='presentation' key={item.imdbID} id={item.imdbID}>
-                  {favMovieList.some((fav) => fav.imdbID === item.imdbID) ? (
+                  {favMovieList.find((fav) => fav.imdbID === item.imdbID) ? (
                     <Item item={item} fav />
                   ) : (
                     <Item item={item} fav={false} />

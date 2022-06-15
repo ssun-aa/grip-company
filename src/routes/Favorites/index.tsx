@@ -59,7 +59,7 @@ const Favorites = () => {
                           key={item.imdbID}
                           id={item.imdbID}
                         >
-                          <Item item={item} fav />
+                          <Item item={item} fav review={item.Review} />
                         </li>
                       )}
                     </Draggable>
