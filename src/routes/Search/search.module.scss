@@ -57,6 +57,10 @@
     padding: 30px;
     overflow: scroll;
 
+    &.isShown {
+      filter: blur(1px);
+    }
+
     li {
       height: 80px;
       padding: 10px;
