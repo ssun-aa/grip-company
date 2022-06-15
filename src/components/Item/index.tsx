@@ -23,12 +23,12 @@ const ListItem = ({ item, fav, review }: Props) => {
         <h1>{item.Title}</h1>
         <p>{item.Type}</p>
         <p>{review || item.imdbID}</p>
-        {fav ? (
-          <ColorStarIcon className={styles.favIcon} viewBox='0,0,30,30' />
-        ) : (
-          <StarIcon className={styles.favIcon} viewBox='0,0,30,30' />
-        )}
       </div>
+      {fav ? (
+        <ColorStarIcon className={styles.favIcon} viewBox='0,0,30,30' />
+      ) : (
+        <StarIcon className={styles.favIcon} viewBox='0,0,30,30' />
+      )}
     </div>
   )
 }
