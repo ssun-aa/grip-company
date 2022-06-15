@@ -1,17 +1,22 @@
 import styles from './item.module.scss'
 import { ColorStarIcon, StarIcon } from 'assets/svgs'
 import { IListItem } from 'types/movie.d'
+import { noImage } from 'assets/images'
 
 interface Props {
   item: IListItem
   fav: boolean
 }
 
+function onErrorHandler(e: { currentTarget: { src: string } }) {
+  e.currentTarget.src = noImage
+}
+
 const ListItem = ({ item, fav }: Props) => {
   return (
     <div className={styles.item}>
       <div className={styles.poster}>
-        <input type='image' src={item.Poster} width='40px' height='60px' alt='poster' />
+        <img src={item.Poster} width='40px' height='60px' alt='poster' onError={onErrorHandler} />
       </div>
       <div className={styles.detail}>
         <h1>{item.Title}</h1>
