@@ -71,6 +71,7 @@ const Modal = ({ clickedMovie, isShown, setShown }: ModalProps) => {
           placeholder='즐겨찾기 후 작성이 가능합니다.'
           onChange={handleInputChange}
           value={review || ''}
+          maxLength={30}
         />
         <div className={styles.buttons}>
           <button type='button' onClick={handleClickFav} className={styles.button}>
