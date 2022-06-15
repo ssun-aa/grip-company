@@ -8,6 +8,7 @@ import { uniqBy } from 'lodash'
 import styles from './search.module.scss'
 import Item from 'components/Item'
 import Modal from 'components/Modal'
+import { cx } from 'styles'
 
 const Search = () => {
   const [keyword, setKeyword] = useState<string>('')
@@ -16,10 +17,12 @@ const Search = () => {
   const [clickedMovie, setClickedMovie] = useState<IListItem>()
   const [totalResults, setTotalResults] = useState(0)
   const [movieList, setMovieList] = useState<IListItem[]>([])
+  const [loading, setLoading] = useState(true)
 
   const [favMovieList] = useRecoilState<IListItem[]>(favListState)
 
-  const pageEnd = useRef<any>()
+  const ListBoxRef = useRef<HTMLDivElement | null>(null)
+  const observeTargetRef = useRef<HTMLLIElement | null>(null)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setKeyword(e.currentTarget.value)
@@ -29,10 +32,9 @@ const Search = () => {
     e.preventDefault()
     setMovieList([])
     setPage(1)
+    setLoading(true)
 
-    if (page === 1) {
-      MovieApi()
-    }
+    MovieApi()
   }
 
   const handleClick = (e: { currentTarget: { id: string } }) => {
@@ -43,12 +45,11 @@ const Search = () => {
   const MovieApi = async () => {
     try {
       const { data } = await getMovieAPI(keyword, page)
-
-      if (page === 1) {
-        setTotalResults(data.totalResults)
-      }
       if (data.Response === 'True') {
         setMovieList((prev) => uniqBy([...prev, ...data.Search], 'imdbID'))
+        if (page === 1) {
+          setTotalResults(Number(data.totalResults))
+        }
       }
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -57,37 +58,40 @@ const Search = () => {
   }
 
   useEffect(() => {
-    MovieApi()
-  }, [page])
-
-  const loadMore = () => {
-    setPage((prev) => prev + 1)
-  }
-
-  useEffect(() => {
     window.localStorage.setItem('favorite_list', JSON.stringify(favMovieList))
   }, [favMovieList])
 
   useEffect(() => {
-    let observer: IntersectionObserver
+    MovieApi()
+  }, [page])
 
-    if (pageEnd.current) {
-      observer = new IntersectionObserver(
-        async (entries) => {
-          const target = entries[0]
-
-          if (target.isIntersecting) {
-            if (page * 10 < totalResults) {
-              loadMore()
-            }
-          }
-        },
-        { threshold: 0.5 }
-      )
-
-      observer.observe(pageEnd.current)
+  useEffect(() => {
+    const options = {
+      root: ListBoxRef.current,
+      rootMargin: '0px 0px 40px 0px',
+      threshold: 1,
     }
-  }, [totalResults])
+
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    const observer = new IntersectionObserver(([entry], observer) => {
+      const target = entry
+
+      if (target.isIntersecting && movieList.length > 0) {
+        if (page * 10 < totalResults) {
+          setPage((prev) => prev + 1)
+          observer.unobserve(entry.target)
+        } else {
+          setLoading(false)
+        }
+      }
+    }, options)
+
+    if (observeTargetRef?.current) observer.observe(observeTargetRef.current)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [movieList, page, totalResults])
 
   return (
     <div className={styles.wrap}>
@@ -105,7 +109,7 @@ const Search = () => {
           </button>
         </form>
       </header>
-      <main>
+      <main ref={ListBoxRef} className={cx(styles.main, { [styles.isShown]: isShown })}>
         {movieList.length ? (
           <ul>
             {movieList.map((item: IListItem) => {
@@ -119,9 +123,11 @@ const Search = () => {
                 </li>
               )
             })}
-            <li ref={pageEnd} className={styles.loading}>
-              {'Loading... '}
-            </li>
+            {loading && (
+              <li ref={observeTargetRef} className={styles.loading}>
+                {'Loading... '}
+              </li>
+            )}
           </ul>
         ) : (
           <p>검색 결과가 없습니다.</p>
