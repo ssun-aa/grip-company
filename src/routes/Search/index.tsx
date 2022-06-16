@@ -17,12 +17,12 @@ const Search = () => {
   const [clickedMovie, setClickedMovie] = useState<IListItem>()
   const [totalResults, setTotalResults] = useState(0)
   const [movieList, setMovieList] = useState<IListItem[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const [favMovieList] = useRecoilState<IListItem[]>(favListState)
 
   const ListBoxRef = useRef<HTMLDivElement | null>(null)
-  const observeTargetRef = useRef<HTMLLIElement | null>(null)
+  const observeTargetRef = useRef<HTMLDivElement | null>(null)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setKeyword(e.currentTarget.value)
@@ -48,6 +48,7 @@ const Search = () => {
   const MovieApi = async () => {
     try {
       const { data } = await getMovieAPI(keyword, page)
+      // setLoading(false)
       if (data.Response === 'True') {
         setMovieList((prev) => uniqBy([...prev, ...data.Search], 'imdbID'))
         if (page === 1) {
@@ -108,7 +109,7 @@ const Search = () => {
             className={styles.searchBar}
             onChange={handleChange}
           />
-          <button type='submit' form='searchForm'>
+          <button type='submit' form='searchForm' className={styles.searchButton}>
             <SearchIcon className={styles.searchIcon} />
           </button>
         </form>
@@ -127,14 +128,12 @@ const Search = () => {
                 </li>
               )
             })}
-            {loading && (
-              <li ref={observeTargetRef} className={styles.loading}>
-                {'Loading... '}
-              </li>
-            )}
+            <div ref={observeTargetRef} />
           </ul>
         ) : (
-          <p>검색 결과가 없습니다.</p>
+          <div className={styles.loadingWrap}>
+            {loading ? <div className={styles.loading} /> : <p>검색 결과가 없습니다.</p>}
+          </div>
         )}
       </main>
       <Modal clickedMovie={clickedMovie} isShown={isShown} setShown={setShown} />

@@ -4,7 +4,6 @@
 @use '/src/styles/mixins/position';
 
 .wrap {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,20 +15,20 @@
     height: 80px;
 
     form {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       height: 80px;
-      padding: 10px 5px;
+      padding: 10px;
       background-color: colors.$WHITE;
       border-radius: 40px;
       box-shadow: 0 5px 100px 0 rgba(gray, 0.1);
 
       .searchBar {
-        width: 90%;
+        width: 100%;
         padding: 20px;
-        margin: 10px 0;
         font-size: 14px;
         color: colors.$GRAYA;
         background-color: colors.$GRAYE;
@@ -42,11 +41,15 @@
         }
       }
 
-      .searchIcon {
-        position: absolute;
-        top: 28px;
-        right: 15%;
-        fill: gray;
+      .searchButton {
+        display: flex;
+        width: 40px;
+        height: 40px;
+
+        .searchIcon {
+          position: absolute;
+          fill: gray;
+        }
       }
     }
   }
@@ -63,7 +66,7 @@
 
     li {
       height: 80px;
-      padding: 10px;
+      padding: 5px;
       cursor: pointer;
       background-color: colors.$WHITE;
       border-radius: 10px;
@@ -74,11 +77,26 @@
       }
     }
 
-    .loading {
+    .loadingWrap {
       display: flex;
-      flex-direction: row;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      height: 100%;
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading {
+        width: 50px;
+        height: 50px;
+        border: 5px solid colors.$POINT_COLOR;
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: spin 1s ease-in-out infinite;
+      }
     }
   }
 }
