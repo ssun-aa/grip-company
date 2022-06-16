@@ -1,5 +1,5 @@
 import styles from './navigation.module.scss'
-import { SearchIcon, StarIcon } from 'assets/svgs'
+import { SearchIcon, FavIcon } from 'assets/svgs'
 import { NavLink } from 'react-router-dom'
 
 const Navigation = () => {
@@ -9,7 +9,7 @@ const Navigation = () => {
         <SearchIcon />
       </NavLink>
       <NavLink to='/fav' className={styles.icon} style={({ isActive }) => (isActive ? { fill: 'black' } : {})}>
-        <StarIcon />
+        <FavIcon />
       </NavLink>
     </div>
   )
