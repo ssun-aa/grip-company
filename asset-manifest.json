@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/grip-company/static/css/main.cf34da4d.css",
+    "main.css": "/grip-company/static/css/main.816dd7db.css",
     "main.js": "/grip-company/static/js/main.aeb51c0b.js",
     "static/js/787.68ea1acb.chunk.js": "/grip-company/static/js/787.68ea1acb.chunk.js",
     "static/media/fav.svg": "/grip-company/static/media/fav.b551aac5aaed7db69e1a69edcde354f5.svg",
@@ -10,12 +10,12 @@
     "static/media/star.svg": "/grip-company/static/media/star.01d29b3de1cdfa3efb6029d814ad25b9.svg",
     "static/media/colorStar.svg": "/grip-company/static/media/colorStar.7ad748181de1cadf2e25434581d8af0a.svg",
     "static/media/check.svg": "/grip-company/static/media/check.f7664bd1f23d711680d28f7ac6f01143.svg",
-    "main.cf34da4d.css.map": "/grip-company/static/css/main.cf34da4d.css.map",
+    "main.816dd7db.css.map": "/grip-company/static/css/main.816dd7db.css.map",
     "main.aeb51c0b.js.map": "/grip-company/static/js/main.aeb51c0b.js.map",
     "787.68ea1acb.chunk.js.map": "/grip-company/static/js/787.68ea1acb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cf34da4d.css",
+    "static/css/main.816dd7db.css",
     "static/js/main.aeb51c0b.js"
   ]
 }
