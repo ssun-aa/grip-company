@@ -5,6 +5,7 @@ export interface IListItem {
   Type: string
   Poster: string
   Review: string
+  Star: number
 }
 
 export interface IMovieAPIRes {

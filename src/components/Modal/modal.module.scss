@@ -30,8 +30,42 @@
         font-weight: 600;
       }
 
+      .year {
+        font-size: 13px;
+      }
+
       p + p {
         margin-top: 5px;
+      }
+
+      .starRating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        width: 5em;
+        padding: 0 0.2em;
+        margin-top: 5px;
+        font-size: 1.5em;
+        text-align: center;
+      }
+
+      .starRating input {
+        width: 100px;
+      }
+
+      .starRating label {
+        padding: 0 1px;
+        cursor: pointer;
+        fill: colors.$GRAYD;
+      }
+
+      .starRating :checked ~ label {
+        fill: colors.$ORANGE;
+      }
+
+      .starRating label:hover,
+      .starRating label:hover ~ label {
+        fill: colors.$YELLOW;
       }
     }
   }
@@ -47,6 +81,14 @@
     .button {
       flex: 1;
       height: 100%;
+
+      .favIcon {
+        fill: colors.$GRAYD;
+      }
+
+      .colorFavIcon {
+        fill: colors.$POINT_COLOR;
+      }
     }
   }
 }
