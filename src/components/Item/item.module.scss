@@ -21,10 +21,13 @@
   .detail {
     position: relative;
     width: 75%;
-    padding-left: 5px;
+    padding: 5px;
 
     .starRating {
       display: flex;
+      align-items: center;
+      height: 15px;
+      padding-bottom: 5px;
 
       .yellowStar {
         width: 15px;
