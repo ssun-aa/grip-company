@@ -1,9 +1,24 @@
-# grip-company
+# Movie App
 
 
 ## 배포 링크
 
 - https://ssun-aa.github.io/grip-company/
+
+## Dependencies
+<span><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/stylelint-263238?style=flat-square&logo=stylelint&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/classnames-000000?style=flat-square&logoColor=white"/></span>
+
+<span><img src="https://img.shields.io/badge/reactbeautifuldnd-b8c4f5?style=flat-square&logo=react-beautiful-dnd&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/recoil-8c94ba?style=flat-square&logo=recoil&logoColor=white"/></span>
+<span><img src="https://img.shields.io/badge/storejs-d9e0ff?style=flat-square&logo=storejs&logoColor=white"/></span>
+
+</br>
 
 
 ## 주요 기능
