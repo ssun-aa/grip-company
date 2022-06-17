@@ -23,6 +23,10 @@
     justify-content: center;
     margin-bottom: 10px;
 
+    img {
+      border-radius: 5px;
+    }
+
     .text {
       padding: 0 10px;
 
@@ -50,7 +54,7 @@
       }
 
       .starRating input {
-        width: 100px;
+        display: none;
       }
 
       .starRating label {
